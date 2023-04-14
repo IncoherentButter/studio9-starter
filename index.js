@@ -23,13 +23,20 @@ else {
 	addItem();
 }
 
+async function storeData(){
+	backend.store(getData("https://github.com/IncoherentButter/studio9-starter/data.json"));
+}
+
+async function loadData(){
+	let data = 	backend.load("https://github.com/IncoherentButter/studio9-starter/data.json");
+}
 // Save when the save button is clicked
 dom.saveButton.addEventListener("click", e => {
-	// localStorage.tasks = JSON.stringify(getData());
-	// backend.store(localStorage);
-	backend.store(JSON.stringify(getData()));
-	console.log(`backend store done`);
+	storeData();
 });
+document.addEventListener('load', (e) => {
+	loadData();
+})
 
 // Keyboard shortcuts
 dom.tasksList.addEventListener("keyup", e => {
