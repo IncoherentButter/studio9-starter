@@ -1,14 +1,4 @@
-[
-	{
-		"title": "hi",
-		"done": false
-	},
-	{
-		"title": "hello",
-		"done": true
-	},
-	{
-		"title": "another",
-		"done": false
-	}
-]
+{
+	"tasks": "[{\"title\":\"dsafdsffdsfd\",\"done\":false},{\"title\":\"3\",\"done\":false},{\"title\":\"7\",\"done\":false},{\"title\":\"8\",\"done\":false},{\"title\":\"\",\"done\":false}]",
+	"madata:token:auth.madata.dev/github": "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"
+}
