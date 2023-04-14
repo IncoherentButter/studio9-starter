@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
 
 <meta charset="UTF-8">
 <title>Yet Another To-Do List</title>
@@ -8,14 +9,16 @@
 <link rel="stylesheet" href="style.css">
 <script type="module">
 import * as app from './index.js';
+import Backend from "https://madata.dev/src/index.js";
+let backend = Backend.from("https://github.com/IncoherentButter/studio9-starter/data.json");
 globalThis.app = app;
 </script>
 
 </head>
 <body>
-	<div id="app">
+	<div id="app" class="logged-out">
 		<div class="backend-controls">
-			<button id="save_button">Save</button>
+			<button id="save_button" class="save">Save</button>
 		</div>
 		<h1><span id="done_count">0</span> done of <span id="total_count">1</span> total</h1>
 		<ul id="tasks_list"></ul>
@@ -29,6 +32,15 @@ globalThis.app = app;
 
 		<button onclick="app.addItem()">Add item</button>
 		<button onclick="app.clearCompleted()">Clear completed</button>
+		<button id="login" class="login" onclick="document.getElementById('app').classList.remove('logged-out'); document.getElementById('app').classList.add('logged-in');">Login</button>
+		<button id="logout" class="logout" onclick="document.getElementById('app').classList.add('logged-out'); document.getElementById('app').classList.remove('logged-in');">Logout</button>
+
+		<div class="user-info">
+			<div id="user-username" class="user-username">Test
+			</div>
+			<img id="user-avatar" class="user-avatar">
+			<!-- <div >Avatar</div> -->
+		</div>
 	</div>
 </body>
 </html>

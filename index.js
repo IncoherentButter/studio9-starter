@@ -1,3 +1,5 @@
+import Backend from "https://madata.dev/src/index.js";
+let backend = Backend.from("https://github.com/IncoherentButter/studio9-starter/data.json");
 // Get references to DOM elements
 export const dom = {
 	tasksList: document.querySelector("#tasks_list"),
@@ -5,6 +7,8 @@ export const dom = {
 	doneCount: document.querySelector("#done_count"),
 	totalCount: document.querySelector("#total_count"),
 	saveButton: document.querySelector("#save_button"),
+	loginButton: document.querySelector("#login"),
+	logoutButton: document.querySelector("#logout"),
 };
 
 // Initialize data. Do we have anything stored?
@@ -21,7 +25,10 @@ else {
 
 // Save when the save button is clicked
 dom.saveButton.addEventListener("click", e => {
-	localStorage.tasks = JSON.stringify(getData());
+	// localStorage.tasks = JSON.stringify(getData());
+	// backend.store(localStorage);
+	backend.store(JSON.stringify(getData()));
+	console.log(`backend store done`);
 });
 
 // Keyboard shortcuts
@@ -131,3 +138,39 @@ function updateCounts () {
 	updateDoneCount();
 	updateTotalCount();
 }
+
+
+export function login(){
+	document.getElementById('app').classList.remove('logged-out');
+	document.getElementById('app').classList.add('logged-in');
+}
+
+export function logout(){
+	document.getElementById('app').classList.add('logged-out');
+	document.getElementById('app').classList.remove('logged-in');
+}
+
+backend.addEventListener('mv-login', (e) => {
+	if (backend.user.username !== undefined && backend.user.avatar !== undefined){
+		document.querySelector("#user-username").textContent = backend.user.username;
+		document.querySelector("#user-avatar").src = backend.user.avatar;
+	}
+	login();
+});
+
+backend.addEventListener('mv-logout', (e) => {
+	logout();
+});
+
+dom.loginButton.addEventListener("click", (e) => {
+	backend.login();
+	login();
+	// console.log(`login occured`);
+	// console.log(`backend user = ${backend.user.username}`);
+	// console.log(`backend ava = ${backend.user.avatar}`);
+});
+
+dom.logoutButton.addEventListener("click", () => {
+	backend.logout();
+	logout();
+});

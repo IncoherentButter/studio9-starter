@@ -20,3 +20,28 @@ input[type="text"] {
 	font-style: italic;
 	text-decoration: line-through;
 }
+
+.logged-in{
+	display: auto;
+}
+
+.logged-in button.login{
+	display: none;
+}
+
+.logged-out button.logout{
+	display: none;
+}
+
+.logged-out div.backend-controls{
+	display: none;
+}
+
+.logged-out div.user-info{
+	display: none;
+}
+
+.login, .logout{
+	position: relative;
+	/* top: -19.5rem; */
+}
